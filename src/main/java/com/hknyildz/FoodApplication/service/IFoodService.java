@@ -1,15 +1,15 @@
 package com.hknyildz.FoodApplication.service;
 
+import com.hknyildz.FoodApplication.dto.FoodDto;
+import com.hknyildz.FoodApplication.entity.FoodEntity;
 import com.hknyildz.FoodApplication.model.Food;
 
 import java.util.List;
 
 public interface IFoodService {
-    List<Food> getList();
 
-    Food create(Food food);
+    List<FoodEntity> getAllList();
 
-    Food update(Food food);
+    FoodEntity createOrUpdate(FoodDto foodDto);
 
-    String delete(Integer id);
 }
