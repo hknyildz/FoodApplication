@@ -9,4 +9,6 @@ public interface IFoodDao {
     List<FoodEntity> getAllList();
 
     FoodEntity createOrUpdate(FoodEntity foodEntity);
+
+    FoodEntity getById(Long id);
 }

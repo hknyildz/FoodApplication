@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class FoodDaoimpl implements IFoodDao {
 
-
+    @Autowired
     private IFoodRepository repository;
 
     @Override
@@ -22,7 +22,12 @@ public class FoodDaoimpl implements IFoodDao {
 
     @Override
     public FoodEntity createOrUpdate(FoodEntity foodEntity) {
-       return repository.save(foodEntity);
+        return repository.save(foodEntity);
+    }
+
+    @Override
+    public FoodEntity getById(Long id) {
+        return repository.findById(id).get();
     }
 }
 
