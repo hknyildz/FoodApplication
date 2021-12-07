@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class FoodEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "TITLE")
     private String title;

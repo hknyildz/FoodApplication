@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class FoodDaoimpl implements IFoodDao {
+public class FoodDaoImpl implements IFoodDao {
 
     @Autowired
     private IFoodRepository repository;

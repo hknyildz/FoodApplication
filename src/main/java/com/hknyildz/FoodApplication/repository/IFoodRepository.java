@@ -11,4 +11,5 @@ public interface IFoodRepository extends CrudRepository<FoodEntity,Long> {
 
 List<FoodEntity> findAll();
 
+
 }

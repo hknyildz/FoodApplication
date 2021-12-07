@@ -11,4 +11,6 @@ public interface IFoodDao {
     FoodEntity createOrUpdate(FoodEntity foodEntity);
 
     FoodEntity getById(Long id);
+
+
 }
