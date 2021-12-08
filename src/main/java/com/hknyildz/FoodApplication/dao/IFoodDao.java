@@ -12,5 +12,5 @@ public interface IFoodDao {
 
     FoodEntity getById(Long id);
 
-
+    int removeById(Long id);
 }

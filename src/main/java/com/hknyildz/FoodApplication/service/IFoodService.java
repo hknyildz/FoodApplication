@@ -13,4 +13,5 @@ public interface IFoodService {
 
     FoodEntity createOrUpdate(FoodDto foodDto);
 
+    String removeById(Long id);
 }
