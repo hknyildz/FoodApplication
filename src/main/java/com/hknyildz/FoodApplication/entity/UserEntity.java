@@ -1,6 +1,11 @@
 package com.hknyildz.FoodApplication.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "USER_TABLE")
@@ -21,6 +26,10 @@ public class UserEntity {
 
     @Column(name = "PASSWORD")
     private String password;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+    @JsonIgnore
+    private Set<FoodEntity> foods = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -60,5 +69,13 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<FoodEntity> getFoods() {
+        return foods;
+    }
+
+    public void setFoods(Set<FoodEntity> foods) {
+        this.foods = foods;
     }
 }

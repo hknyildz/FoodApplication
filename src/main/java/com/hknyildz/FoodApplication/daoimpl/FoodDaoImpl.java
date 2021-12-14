@@ -33,7 +33,7 @@ public class FoodDaoImpl implements IFoodDao {
     @Override
     public int removeById(Long id) {
         repository.deleteById(id);
-        return 0;
+        return 1;
     }
 }
 

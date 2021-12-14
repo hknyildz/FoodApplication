@@ -1,7 +1,9 @@
 package com.hknyildz.FoodApplication.serviceimpl;
 
+import com.hknyildz.FoodApplication.dao.IAuthDao;
 import com.hknyildz.FoodApplication.dao.IFoodDao;
 import com.hknyildz.FoodApplication.entity.FoodEntity;
+import com.hknyildz.FoodApplication.entity.UserEntity;
 import com.hknyildz.FoodApplication.model.dto.FoodDto;
 import com.hknyildz.FoodApplication.service.IFoodService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ public class FoodServiceImpl implements IFoodService {
 
     @Autowired
     private IFoodDao foodDao;
+
+    @Autowired
+    private IAuthDao authDao;
 
 
     @Override
@@ -39,11 +44,16 @@ public class FoodServiceImpl implements IFoodService {
         foodEntity.setDescription(foodDto.getDescription());
         foodEntity.setFoodDetails(foodDto.getFoodDetails());
 
+        UserEntity currentUser = authDao.getByUserId(foodDto.getUserId());
+
+        foodEntity.setUser(currentUser);
+
         return foodDao.createOrUpdate(foodEntity);
     }
 
     @Override
     public String removeById(Long id) {
+
         int result = foodDao.removeById(id);
         return result == 1 ? ("removed successfully") : ("remove failed");
     }

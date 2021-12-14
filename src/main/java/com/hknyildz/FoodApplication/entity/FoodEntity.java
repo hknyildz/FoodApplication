@@ -23,8 +23,13 @@ public class FoodEntity {
     private String description;
     @Column(name = "CREATEDATE")
     private Date createDate;
+
+    @Lob
     @Column(name = "FOODDETAILS")
     private String foodDetails;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH})
+    private UserEntity user;
 
 
 
@@ -66,5 +71,13 @@ public class FoodEntity {
 
     public void setFoodDetails(String foodDetails) {
         this.foodDetails = foodDetails;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 }

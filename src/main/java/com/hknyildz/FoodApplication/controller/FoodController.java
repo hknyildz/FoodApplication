@@ -21,7 +21,7 @@ public class FoodController {
         return foodService.createOrUpdate(foodDto);
     }
 
-    @RequestMapping(value = "alllist",method = RequestMethod.GET)
+    @RequestMapping(value = "list",method = RequestMethod.GET)
     public List<FoodEntity> getAllList(){
         return foodService.getAllList();
     }

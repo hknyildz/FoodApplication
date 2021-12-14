@@ -7,6 +7,8 @@ import com.hknyildz.FoodApplication.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class AuthDaoImpl implements IAuthDao {
 
@@ -38,6 +40,12 @@ public class AuthDaoImpl implements IAuthDao {
     public int removeUserById(Long id) {
         userRepository.deleteById(id);
         return 1;
+    }
+
+    @Override
+    public List<UserEntity> getAll() {
+        List<UserEntity> list = (List<UserEntity>) userRepository.findAll();
+        return list;
     }
 
 

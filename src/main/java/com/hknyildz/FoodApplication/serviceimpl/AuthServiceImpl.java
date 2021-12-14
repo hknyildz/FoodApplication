@@ -8,6 +8,8 @@ import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AuthServiceImpl implements IAuthService {
 
@@ -43,12 +45,10 @@ public class AuthServiceImpl implements IAuthService {
     }
 
     @Override
-    public String removeUser(UserDto userDto) {
-        UserEntity userEntity= new UserEntity();
-        userEntity.setId(userDto.getId());
-        int result = AuthDao.removeUser(userEntity);
-        return result == 1 ? ("user by id: " + userDto.getId() + " deleted successfully") : ("Delete operation failed");
+    public List<UserEntity> getAll() {
+        return AuthDao.getAll();
     }
+
 
     @Override
     public String removeUserById(Long id) {
