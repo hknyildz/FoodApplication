@@ -6,6 +6,7 @@ import com.hknyildz.FoodApplication.service.IAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @RestController
@@ -21,7 +22,7 @@ public class AuthController {
     }
 
     @RequestMapping(value = "register", method = RequestMethod.POST)
-    public UserEntity register(@RequestBody UserDto userDto) {
+    public UserEntity register(@RequestBody UserDto userDto) throws NoSuchAlgorithmException {
         return authService.create(userDto);
     }
 

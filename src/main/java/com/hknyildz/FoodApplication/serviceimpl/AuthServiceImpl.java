@@ -1,5 +1,6 @@
 package com.hknyildz.FoodApplication.serviceimpl;
 
+import com.hknyildz.FoodApplication.Functions.Encryptor;
 import com.hknyildz.FoodApplication.dao.IAuthDao;
 import com.hknyildz.FoodApplication.entity.UserEntity;
 import com.hknyildz.FoodApplication.model.dto.UserDto;
@@ -8,21 +9,28 @@ import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @Service
 public class AuthServiceImpl implements IAuthService {
 
+    Encryptor encryptor = new Encryptor();
+
     @Autowired
     private IAuthDao AuthDao;
 
     @Override
-    public UserEntity create(UserDto userDto) {
+    public UserEntity create(UserDto userDto) throws NoSuchAlgorithmException {
         UserEntity userEntity = new UserEntity();
         userEntity.setFirstName(userDto.getFirstName());
         userEntity.setLastName(userDto.getLastName());
         userEntity.setEmail(userDto.getEmail());
-        userEntity.setPassword(userDto.getPassword());
+
+        String password = userDto.getPassword();
+        String encryptedPassword = encryptor.EncryptString(password);
+
+        userEntity.setPassword(encryptedPassword);
         return AuthDao.register(userEntity);
     }
 
@@ -35,7 +43,12 @@ public class AuthServiceImpl implements IAuthService {
         userEntity.setFirstName(userDto.getFirstName());
         userEntity.setLastName(userDto.getLastName());
         userEntity.setEmail(userDto.getEmail());
-        userEntity.setPassword(userDto.getPassword());
+
+        String password = userDto.getPassword();
+        String encryptedPassword = encryptor.EncryptString(password);
+
+        userEntity.setPassword(encryptedPassword);
+
         return AuthDao.update(userEntity);
     }
 
